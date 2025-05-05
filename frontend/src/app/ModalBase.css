@@ -1,0 +1,27 @@
+.modal-wrapper {
+    min-width: 240px;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: bold;
+
+    margin-bottom: 8px;
+}
+
+.btn-close-modal {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    
+    color: #fdfdfd;
+    background-color: #d15454;
+    padding: 4px 10px;
+
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.btn-close-modal:hover {
+    background-color: #b03c3c;
+}

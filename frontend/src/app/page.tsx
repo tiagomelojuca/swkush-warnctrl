@@ -13,15 +13,25 @@ import Infracao from './Infracao';
 import FilterModal from './FilterModal';
 import NewWarningModal from './NewWarningModal';
 
+import { QueryOptions, QueryUrlAssembler } from './QueryUrlAssembler';
+
+const queryUrlAssembler = new QueryUrlAssembler();
+
 export default function Home() {
   const [warnings, setWarnings] = useState([]);
+  const [filters, setFilters] = useState(null);
+
   const [filterModalIsOpen, setFilterModalIsOpen] = useState(false);
   const [newWarningModalIsOpen, setNewWarningModalIsOpen] = useState(false);
 
+  function queryWarnings(params: QueryOptions | null) {
+    api.get(queryUrlAssembler.Execute('/', params))
+      .then(res => { setWarnings(res.data.reverse()) });
+  };
+
   useEffect(() => {
-    api.get('/')
-      .then(res => { setWarnings(res.data) });
-  }, []);
+    queryWarnings(filters as QueryOptions | null);
+  }, [filters]);
 
   function handleDeleteWarning(id: number) {
     api.delete(`/${id}`)
