@@ -11,7 +11,8 @@ export default function Infracao({ data, handleClick }: { data: Warning, handleC
             <span><b>Infrator: </b>{data.infrator}</span>
             <span><b>Relator: </b>{data.relator}</span>
             <span><b>Conteudo: </b>{data.conteudo}</span>
-            <span><b>Descrição: </b>{data.descricao}</span>
+            <span className="descricao"><b>Descrição: </b></span>
+            <span className="descricaoText">{data.descricao}</span>
             <button className="btn" onClick={() => handleClick(data.id)}>Excluir</button>
         </div>
     );

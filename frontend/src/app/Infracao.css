@@ -8,6 +8,8 @@
     border: 2px solid #fdfdfd;
     border-radius: 12px;
     margin-top: 24px;
+
+    width: 240px;
 }
 
 .infracao .data {
@@ -15,8 +17,21 @@
     margin-bottom: 8px;
 }
 
-.infracao .btn {
+.infracao .descricao {
+    border-top: 2px solid #fdfdfd;
     margin-top: 8px;
+    padding-top: 8px;
+    width: 100%;
+
+    text-align: center;
+}
+
+.infracao .descricaoText {
+    text-align: center;
+}
+
+.infracao .btn {
+    margin-top: 16px;
     background-color: #d15454;
     width: 100%;
     border-radius: 12px;
