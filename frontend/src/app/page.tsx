@@ -25,11 +25,16 @@ export default function Home() {
 
   const [filterModalIsOpen, setFilterModalIsOpen] = useState(false);
   const [newWarningModalIsOpen, setNewWarningModalIsOpen] = useState(false);
+
   const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   function queryWarnings(params: QueryOptions | null) {
     api.get(queryUrlAssembler.Execute('/', params))
-      .then(res => { setWarnings(res.data.reverse()) });
+      .then(res => { setWarnings(res.data.reverse()) })
+      .catch(err => {
+        throwErrorModal("Não foi possível conectar ao servidor");
+      });
   };
 
   useEffect(() => {
@@ -39,6 +44,9 @@ export default function Home() {
   function handleDeleteWarning(id: number) {
     api.delete(`/${id}`)
       .then(res => { setWarnings(warnings.filter(warning => warning.id !== id)) })
+      .catch(err => {
+        throwErrorModal("Não foi possível conectar ao servidor");
+      })
   }
 
   function handleInsertWarning(warning: Warning) {
@@ -47,8 +55,13 @@ export default function Home() {
         queryWarnings(filters as QueryOptions | null);
       })
       .catch(err => {
-        setErrorModalIsOpen(true);
+        throwErrorModal("Preencha todos os campos!");
       })
+  }
+
+  function throwErrorModal(message: string) {
+    setErrorMessage(message);
+    setErrorModalIsOpen(true);
   }
 
   return (
@@ -84,6 +97,7 @@ export default function Home() {
 
       <ErroModal
         isOpen={errorModalIsOpen}
+        errMsg={errorMessage}
         onRequestClose={() => setErrorModalIsOpen(false)}
       />
     </div>
