@@ -10,6 +10,7 @@ import BotaoFiltros from './BotaoFiltros';
 import BotaoNovaInfracao from './BotaoNovaInfracao';
 import Infracao from './Infracao';
 
+import ErroModal from './ErroModal';
 import FilterModal from './FilterModal';
 import NewWarningModal from './NewWarningModal';
 
@@ -24,6 +25,7 @@ export default function Home() {
 
   const [filterModalIsOpen, setFilterModalIsOpen] = useState(false);
   const [newWarningModalIsOpen, setNewWarningModalIsOpen] = useState(false);
+  const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
 
   function queryWarnings(params: QueryOptions | null) {
     api.get(queryUrlAssembler.Execute('/', params))
@@ -45,7 +47,7 @@ export default function Home() {
         queryWarnings(filters as QueryOptions | null);
       })
       .catch(err => {
-        console.log(err);
+        setErrorModalIsOpen(true);
       })
   }
 
@@ -78,6 +80,11 @@ export default function Home() {
         isOpen={newWarningModalIsOpen}
         onRequestClose={() => setNewWarningModalIsOpen(false)}
         onSubmit={(warning: Warning) => handleInsertWarning(warning)}
+      />
+
+      <ErroModal
+        isOpen={errorModalIsOpen}
+        onRequestClose={() => setErrorModalIsOpen(false)}
       />
     </div>
   );
