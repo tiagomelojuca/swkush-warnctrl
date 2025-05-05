@@ -1,8 +1,8 @@
 export interface Warning {
-    id: number,
+    id?: number,
     infrator: string,
     conteudo: string,
     descricao: string,
     relator: string,
-    data: string
+    data?: string
 }

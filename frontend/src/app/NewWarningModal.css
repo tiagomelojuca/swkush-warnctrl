@@ -1,0 +1,43 @@
+.btn-adicionar {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    padding: 0 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    color: #fdfdfd;
+    font-weight: bold;
+    cursor: pointer;
+
+    padding: 8px;
+
+    border-radius: 12px;
+    width: 100%;
+}
+
+.btn-adicionar:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.campo-infracao {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.campo-infracao :nth-child(1) {
+    flex: 1;
+}
+
+.campo-infracao label {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.campo-infracao input, select, textarea {
+    border: 1px solid #112013;
+    border-radius: 4px;
+    padding: 4px;
+}

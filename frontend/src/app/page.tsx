@@ -13,6 +13,7 @@ import Infracao from './Infracao';
 import FilterModal from './FilterModal';
 import NewWarningModal from './NewWarningModal';
 
+import { Warning } from './Warning';
 import { QueryOptions, QueryUrlAssembler } from './QueryUrlAssembler';
 
 const queryUrlAssembler = new QueryUrlAssembler();
@@ -38,6 +39,16 @@ export default function Home() {
       .then(res => { setWarnings(warnings.filter(warning => warning.id !== id)) })
   }
 
+  function handleInsertWarning(warning: Warning) {
+    api.post('/', warning)
+      .then(res => {
+        queryWarnings(filters as QueryOptions | null);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
   return (
     <div className='main-wrapper flex flex-col items-center justify-center'>
 
@@ -57,8 +68,17 @@ export default function Home() {
         warnings.map(warning => <Infracao key={warning.id} data={warning} handleClick={handleDeleteWarning}/>)
       }
 
-      <FilterModal isOpen={filterModalIsOpen} onRequestClose={() => setFilterModalIsOpen(false)}/>
-      <NewWarningModal isOpen={newWarningModalIsOpen} onRequestClose={() => setNewWarningModalIsOpen(false)}/>
+      <FilterModal
+        isOpen={filterModalIsOpen}
+        onRequestClose={() => setFilterModalIsOpen(false)}
+        onSubmit={(params: QueryOptions) => setFilters(params as QueryOptions)}
+      />
+
+      <NewWarningModal
+        isOpen={newWarningModalIsOpen}
+        onRequestClose={() => setNewWarningModalIsOpen(false)}
+        onSubmit={(warning: Warning) => handleInsertWarning(warning)}
+      />
     </div>
   );
 }
