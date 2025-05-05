@@ -1,0 +1,21 @@
+.btn-nova-infracao {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 0 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    color: #112013;
+    font-weight: bold;
+    cursor: pointer;
+
+    padding: 8px;
+
+    border-radius: 12px;
+}
+
+.btn-nova-infracao:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
