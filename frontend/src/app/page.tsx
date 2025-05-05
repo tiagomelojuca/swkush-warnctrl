@@ -1,28 +1,22 @@
+"use client";
+
+import { useState, useEffect } from 'react';
+
 import Image from 'next/image'
 
-import BotaoFiltros from './BotaoFiltros'
-import BotaoNovaInfracao from './BotaoNovaInfracao'
-import Infracao from './Infracao'
+import api from './api';
+
+import BotaoFiltros from './BotaoFiltros';
+import BotaoNovaInfracao from './BotaoNovaInfracao';
+import Infracao from './Infracao';
 
 export default function Home() {
-  const data = [
-    {
-      id: 8,
-      infrator: "tapiocaferoz",
-      conteudo: "siege",
-      descricao: "foo",
-      relator: "tapiocaferoz",
-      data: "2025-05-05T02:07:05.000Z"
-    },
-    {
-      id: 9,
-      infrator: "Tyfurion",
-      conteudo: "gw",
-      descricao: "foo",
-      relator: "tapiocaferoz",
-      data: "2025-05-05T02:07:06.000Z"
-    }
-  ]
+  const [warnings, setWarnings] = useState([]);
+
+  useEffect(() => {
+    api.get('/')
+      .then(res => { setWarnings(res.data) });
+  }, []);
 
   return (
     <div className='main-wrapper flex flex-col items-center justify-center'>
@@ -40,7 +34,7 @@ export default function Home() {
       </div>
 
       {
-        data.map(item => <Infracao key={item.id} data={item}/>)
+        warnings.map(warning => <Infracao key={warning.id} data={warning}/>)
       }
     </div>
   );

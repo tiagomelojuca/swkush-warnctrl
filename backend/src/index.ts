@@ -1,4 +1,6 @@
 const express = require('express')
+const cors = require('cors');
+
 import AppDataSource from './data-source';
 
 import { Warning } from "./Warning"
@@ -7,6 +9,7 @@ const runServer = async () => {
     const APP_PORT = 3333;
     const app = express();
     app.use(express.json());
+    app.use(cors());
 
     await AppDataSource.initialize();
     const warningRepository = AppDataSource.getRepository(Warning);
