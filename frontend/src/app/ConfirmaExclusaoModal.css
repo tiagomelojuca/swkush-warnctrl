@@ -1,0 +1,48 @@
+.modal-confirma-exclusao-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 24px;
+}
+
+.btn-sim {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 0 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+
+    padding: 8px 24px;
+
+    border-radius: 12px;
+}
+
+.btn-sim:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.btn-nao {
+    background-color: #d15454; /* Green */
+    border: none;
+    color: white;
+    padding: 0 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+
+    padding: 8px 24px;
+
+    border-radius: 12px;
+}
+
+.btn-nao:hover {
+    background-color: #b03c3c; /* Darker green on hover */
+}
