@@ -4,7 +4,7 @@ import AppDataSource from './data-source';
 import { Warning } from "./Warning"
 
 const runServer = async () => {
-    const APP_PORT = 3000;
+    const APP_PORT = 3333;
     const app = express();
     app.use(express.json());
 
